@@ -84,12 +84,103 @@
   }
   [data-r="photo-band-mask"]:hover [data-r="photo-band"] { animation-play-state: paused; }
   @media (max-width: 720px) {
+    [data-r="nav-pill"] { display: none !important; }
     [data-r="nav-items"] { display: none !important; }
     [data-r="nav-cta-label"] { display: none !important; }
-    [data-r="header-pad"] { padding-top: 80px !important; }
+    [data-r="header-pad"] { padding-top: 56px !important; }
+    [data-r="nav-hamburger"] { display: inline-flex !important; }
   }
   @media (min-width: 721px) {
     [data-r="header-pad"] { padding-top: 96px !important; }
+    [data-r="nav-hamburger"] { display: none !important; }
+    [data-r="mobile-menu"] { display: none !important; }
+  }
+  /* Mobile menu open state */
+  body.mobile-menu-open { overflow: hidden; }
+  [data-r="mobile-menu"] {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(44,44,42,0.28);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.28s ease;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 16px;
+  }
+  [data-r="mobile-menu"].is-open { opacity: 1; pointer-events: auto; }
+  [data-r="mobile-menu-inner"] {
+    position: relative;
+    width: 60%;
+    max-width: 320px;
+    min-width: 240px;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: rgba(255,255,255,0.98);
+    -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(44,44,42,0.18), 0 0 0 1px rgba(44,44,42,0.06);
+    display: flex; flex-direction: column;
+    padding: 44px 28px 28px;
+    gap: 4px;
+    transform: translateY(-8px) scale(0.98);
+    transition: transform 0.28s ease;
+  }
+  [data-r="mobile-menu"].is-open [data-r="mobile-menu-inner"] { transform: translateY(0) scale(1); }
+
+  /* Back-to-top button (mobile only) */
+  [data-r="back-to-top"] {
+    position: fixed;
+    right: 16px;
+    bottom: 20px;
+    width: 48px;
+    height: 48px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.9);
+    -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 6px 20px rgba(44,44,42,0.14), 0 0 0 1px rgba(44,44,42,0.06);
+    color: #2C2C2A;
+    cursor: pointer;
+    z-index: 90;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  [data-r="back-to-top"].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  @media (max-width: 720px) {
+    [data-r="back-to-top"] { display: inline-flex; }
+  }
+  [data-r="mobile-menu-inner"] a[data-r="mm-link"] {
+    display: block;
+    padding: 12px 0;
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: #2C2C2A;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(44,44,42,0.08);
+  }
+  [data-r="mobile-menu-inner"] a[data-r="mm-cta"] {
+    margin-top: 20px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 18px;
+    background: #D87C5E; color: #FFFFFF;
+    border-radius: 999px; text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    align-self: stretch;
+    justify-content: center;
   }
 </style>
 <script src="./hydrate-reels.js" defer=""></script>
@@ -103,9 +194,9 @@
 
 <div style="position: relative; z-index: 1;">
 
-  <!-- ============== HEADER: floating pill nav ============== -->
-  <header style="position: fixed; top: 16px; left: 0; right: 0; z-index: 100; padding: 0 16px; display: flex; justify-content: center;">
-    <nav style="display: flex; align-items: center; gap: 8px; padding: 10px 12px 10px 22px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 999px; box-shadow: 0 4px 24px rgba(44,44,42,0.08), 0 0 0 1px rgba(44,44,42,0.04); max-width: 100%;">
+  <!-- ============== HEADER: floating pill nav + mobile hamburger ============== -->
+  <header style="position: fixed; top: 16px; left: 0; right: 0; z-index: 100; padding: 0 16px; display: flex; justify-content: center; pointer-events: none;">
+    <nav data-r="nav-pill" style="pointer-events: auto; display: flex; align-items: center; gap: 8px; padding: 10px 12px 10px 22px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 999px; box-shadow: 0 4px 24px rgba(44,44,42,0.08), 0 0 0 1px rgba(44,44,42,0.04); max-width: 100%;">
       <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: 18px; letter-spacing: 0.02em; color: #2C2C2A;">るる</div>
       <div data-r="nav-items" style="display: flex; align-items: center; gap: 28px; margin: 0 28px 0 32px; font-size: 13px; font-weight: 500; color: #2C2C2A;">
         <a href="#story" style="color: inherit; text-decoration: none;">Story</a>
@@ -119,7 +210,28 @@
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </a>
     </nav>
+    <button type="button" data-r="nav-hamburger" aria-label="メニューを開く" aria-expanded="false" style="display: none; position: fixed; top: 16px; right: 16px; align-items: center; justify-content: center; width: 48px; height: 48px; background: rgba(255,255,255,0.9); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border: none; border-radius: 999px; padding: 0; cursor: pointer; color: #2C2C2A; box-shadow: 0 4px 20px rgba(44,44,42,0.10), 0 0 0 1px rgba(44,44,42,0.06); pointer-events: auto;">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="8" x2="20" y2="8"></line><line x1="4" y1="16" x2="20" y2="16"></line></svg>
+    </button>
   </header>
+
+  <!-- Mobile fullscreen menu -->
+  <div data-r="mobile-menu" aria-hidden="true">
+    <div data-r="mobile-menu-inner">
+      <button type="button" data-r="mobile-menu-close" aria-label="メニューを閉じる" style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: transparent; border: none; padding: 0; cursor: pointer; color: #2C2C2A;">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+      </button>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #5F5E5A; text-transform: uppercase; margin-bottom: 4px;">MENU</div>
+      <a href="#story" data-r="mm-link">Story</a>
+      <a href="#voicy" data-r="mm-link">Voicy</a>
+      <a href="#about" data-r="mm-link">About</a>
+      <a href="#connect" data-r="mm-link">Connect</a>
+      <a href="https://lin.ee/zY0tCOb" target="_blank" rel="noopener" data-r="mm-cta">
+        <img src="images/line-icon.png" alt="LINE" style="width: 16px; height: 16px; display: block;">
+        無料特典を受け取る
+      </a>
+    </div>
+  </div>
 
   <!-- ============== HERO ============== -->
   <section data-r="header-pad" style="max-width: 1240px; margin: 0 auto; padding-left: 24px; padding-right: 24px; padding-bottom: clamp(60px, 8vw, 120px);">
@@ -840,6 +952,11 @@
   </footer>
 
 </div>
+
+<!-- Back-to-top button (mobile only, JS-toggled visibility) -->
+<button type="button" data-r="back-to-top" aria-label="ページ上部へ戻る">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg>
+</button>
 
 </x-dc>
 </body>

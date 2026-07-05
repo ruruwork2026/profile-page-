@@ -65,3 +65,60 @@
     initBand();
   }
 })();
+
+
+// Mobile hamburger menu
+(function(){
+  function init(){
+    var btn = document.querySelector('[data-r="nav-hamburger"]');
+    var menu = document.querySelector('[data-r="mobile-menu"]');
+    var close = document.querySelector('[data-r="mobile-menu-close"]');
+    if (!btn || !menu) return;
+    function open(){
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('mobile-menu-open');
+    }
+    function shut(){
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('mobile-menu-open');
+    }
+    btn.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    // backdrop-click closes
+    menu.addEventListener('click', function(e){ if (e.target === menu) shut(); });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', shut); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') shut(); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+
+// Back-to-top button (mobile)
+(function(){
+  function init(){
+    var btn = document.querySelector('[data-r="back-to-top"]');
+    if (!btn) return;
+    function onScroll(){
+      if (window.pageYOffset > 400) btn.classList.add('is-visible');
+      else btn.classList.remove('is-visible');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    btn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
