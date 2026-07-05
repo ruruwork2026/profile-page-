@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #FFFFFF;
+    color: #2C2C2A;
+    font-family: 'Zen Kaku Gothic New', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  @keyframes orbitFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (max-width: 720px) {
+    [data-r="nav-items"] { display: none !important; }
+    [data-r="nav-cta-label"] { display: none !important; }
+    [data-r="header-pad"] { padding-top: 80px !important; }
+  }
+  @media (min-width: 721px) {
+    [data-r="header-pad"] { padding-top: 96px !important; }
+  }
+</style>
+</helmet>
+
+<!-- ======================================================== -->
+<!-- Decorative gradient blobs (page-level ambient atmosphere) -->
+<!-- ======================================================== -->
+<div aria-hidden="true" style="position: fixed; pointer-events: none; top: -200px; right: -200px; width: 600px; height: 600px; border-radius: 50%; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 30%, #C5A2D4 65%, #7DB3D0 100%); filter: blur(120px); opacity: 0.22; z-index: 0;"></div>
+<div aria-hidden="true" style="position: fixed; pointer-events: none; bottom: -240px; left: -200px; width: 520px; height: 520px; border-radius: 50%; background: linear-gradient(160deg, #C5A2D4 0%, #7DB3D0 100%); filter: blur(120px); opacity: 0.18; z-index: 0;"></div>
+
+<div style="position: relative; z-index: 1;">
+
+  <!-- ============== HEADER: floating pill nav ============== -->
+  <header style="position: fixed; top: 16px; left: 0; right: 0; z-index: 100; padding: 0 16px; display: flex; justify-content: center;">
+    <nav style="display: flex; align-items: center; gap: 8px; padding: 10px 12px 10px 22px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 999px; box-shadow: 0 4px 24px rgba(44,44,42,0.08), 0 0 0 1px rgba(44,44,42,0.04); max-width: 100%;">
+      <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: 18px; letter-spacing: 0.02em; color: #2C2C2A;">るる</div>
+      <div data-r="nav-items" style="display: flex; align-items: center; gap: 28px; margin: 0 28px 0 32px; font-size: 13px; font-weight: 500; color: #2C2C2A;">
+        <a href="#story" style="color: inherit; text-decoration: none;">Story</a>
+        <a href="#voicy" style="color: inherit; text-decoration: none;">Voicy</a>
+        <a href="#about" style="color: inherit; text-decoration: none;">About</a>
+        <a href="#connect" style="color: inherit; text-decoration: none;">Connect</a>
+      </div>
+      <a href="https://lin.ee/zY0tCOb" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: #D87C5E; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-size: 13px; font-weight: 500;">
+        <img src="images/line-icon.png" alt="LINE" style="width: 18px; height: 18px; display: block;">
+        <span data-r="nav-cta-label">無料特典を受け取る</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section data-r="header-pad" style="max-width: 1240px; margin: 0 auto; padding-left: 24px; padding-right: 24px; padding-bottom: clamp(60px, 8vw, 120px);">
+    <div style="display: flex; flex-wrap: wrap-reverse; align-items: center; gap: clamp(32px, 5vw, 80px); justify-content: space-between;">
+      <!-- Text block -->
+      <div style="flex: 1 1 360px; min-width: 280px;">
+        <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA);"></span>
+          PROFILE — RURU
+        </div>
+
+        <h1 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(36px, 6.4vw, 76px); line-height: 1.22; letter-spacing: -0.02em; margin: 18px 0 0;">
+          夫にも会社にも<br>
+          <span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">依存しない</span>働き方
+        </h1>
+
+        <p style="font-size: clamp(14px, 1.2vw, 16px); line-height: 1.95; color: #5F5E5A; margin: 24px 0 0; max-width: 36em;">
+          46歳でクビ。夫のモラハラ、借金850万、マイホームも失う。<br>離婚して娘を2人連れて家を出た。スキルゼロからフリーランスに転身した実体験を書いています。アラフィフでも人生を選べる収入の作り方を発信中。
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; align-items: center;">
+          <a href="https://lin.ee/zY0tCOb" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; background: #D87C5E; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500;">
+            <img src="images/line-icon.png" alt="LINE" style="width: 22px; height: 22px; display: block;">
+            無料特典を受け取る
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+          <div style="font-size: 11px; letter-spacing: 0.14em; color: #5F5E5A; text-transform: uppercase;">公式LINE — 登録は10秒</div>
+        </div>
+      </div>
+
+      <!-- Photo block (round with gradient orbit line) -->
+      <div style="flex: 0 1 400px; min-width: 240px; display: flex; justify-content: center;">
+        <div style="position: relative; width: clamp(168px, 22.4vw, 280px); aspect-ratio: 1;">
+          <!-- soft gradient halo -->
+          <div aria-hidden="true" style="position: absolute; inset: -50px; border-radius: 50%; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 30%, #C5A2D4 65%, #7DB3D0 100%); filter: blur(50px); opacity: 0.45;"></div>
+          <!-- orbit ring (svg, gradient stroke) -->
+          <svg viewBox="0 0 100 100" aria-hidden="true" style="position: absolute; inset: -12px; width: calc(100% + 24px); height: calc(100% + 24px); animation: orbitFloat 6s ease-in-out infinite;">
+            <defs>
+              <linearGradient id="orbitHero" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFB897"></stop>
+                <stop offset="35%" stop-color="#EE9C9C"></stop>
+                <stop offset="70%" stop-color="#C5A2D4"></stop>
+                <stop offset="100%" stop-color="#7DB3D0"></stop>
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="49" fill="none" stroke="url(#orbitHero)" stroke-width="0.5"></circle>
+          </svg>
+          <!-- photo placeholder (intentional gradient circle) -->
+          <div style="position: relative; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 30%, #C5A2D4 65%, #7DB3D0 100%); overflow: hidden; box-shadow: 0 30px 80px rgba(216,124,94,0.18);">
+            <img src="images/hero-portrait.jpg" alt="ruru — 在宅ワーク中のポートレート" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; filter: saturate(0.92) contrast(1.02);">
+            <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,184,151,0.45) 0%, rgba(238,156,156,0.30) 30%, rgba(197,162,212,0.30) 65%, rgba(125,179,208,0.40) 100%); mix-blend-mode: soft-light; pointer-events: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== 無料特典 (HERO直下・メインCTA) ============== -->
+  <section id="gift" style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="position: relative; padding: clamp(32px, 4.5vw, 56px); border-radius: 48px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06), 0 30px 80px rgba(216,124,94,0.10); overflow: hidden;">
+      <!-- ambient blobs -->
+      <div aria-hidden="true" style="position: absolute; top: -120px; right: -120px; width: 380px; height: 380px; border-radius: 50%; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 55%, #C5A2D4 100%); filter: blur(90px); opacity: 0.32;"></div>
+      <div aria-hidden="true" style="position: absolute; bottom: -140px; left: -100px; width: 340px; height: 340px; border-radius: 50%; background: linear-gradient(160deg, #C5A2D4 0%, #7DB3D0 100%); filter: blur(90px); opacity: 0.22;"></div>
+
+      <div style="position: relative;">
+        <!-- Header -->
+        <div style="text-align: center; max-width: 640px; margin: 0 auto clamp(28px, 4vw, 44px);">
+          <div style="display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #D87C5E;"></span>
+            FREE GIFT — 公式LINEにて配布中
+          </div>
+          <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(28px, 4.4vw, 52px); line-height: 1.3; letter-spacing: -0.02em; margin: 18px 0 0;">
+            公式LINEで、<br><span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">無料プレゼント</span>配布中
+          </h2>
+        </div>
+
+        <!-- 2 gift cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(20px, 2.4vw, 32px); max-width: 880px; margin: 0 auto;">
+          <!-- Gift 01 -->
+          <article style="padding: clamp(20px, 2vw, 24px); border-radius: 32px; background: linear-gradient(160deg, rgba(255,184,151,0.18), rgba(238,156,156,0.06)); position: relative;">
+            <!-- cover art placeholder -->
+            <div style="aspect-ratio: 4/3; border-radius: 20px; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 55%, #C5A2D4 100%); position: relative; overflow: hidden; box-shadow: 0 12px 30px rgba(238,156,156,0.20); display: flex; align-items: center; justify-content: center;">
+              <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.28), transparent 60%);"></div>
+              <div style="position: absolute; top: 16px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.9); z-index: 2;">GIFT 01</div>
+              <img src="images/gift-01-digest.png" alt="46歳でフリーランスに挑戦！3年間でやった10のこと 無料ダイジェスト版" loading="lazy" style="position: relative; height: 92%; width: auto; max-width: 88%; object-fit: contain; border-radius: 6px; box-shadow: 0 12px 24px rgba(120,60,40,0.22);">
+            </div>
+            <div style="margin-top: 22px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #D87C5E;">— 特典 01</div>
+              <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(16px, 1.8vw, 20px); line-height: 1.6; letter-spacing: -0.005em; margin: 10px 0 0;">『46歳で失業した私が、3年で前職の2倍になるまでにやった10のこと』</h3>
+              <p style="font-size: 13px; line-height: 1.85; color: #5F5E5A; margin: 12px 0 0;">ダイジェスト版</p>
+            </div>
+          </article>
+          <!-- Gift 02 -->
+          <article style="padding: clamp(20px, 2vw, 24px); border-radius: 32px; background: linear-gradient(160deg, rgba(197,162,212,0.16), rgba(125,179,208,0.06)); position: relative;">
+            <div style="aspect-ratio: 4/3; border-radius: 20px; background: linear-gradient(160deg, #C5A2D4 0%, #7DB3D0 55%, #5A8EAA 100%); position: relative; overflow: hidden; box-shadow: 0 12px 30px rgba(125,179,208,0.20); display: flex; align-items: center; justify-content: center;">
+              <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.28), transparent 60%);"></div>
+              <div style="position: absolute; top: 16px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.9); z-index: 2;">GIFT 02</div>
+              <img src="images/gift-02-ai-guide.png" alt="事務員さんのAI活用スタートガイド コピペで今日から使える5つだけ" loading="lazy" style="position: relative; height: 92%; width: auto; max-width: 88%; object-fit: contain; border-radius: 6px; box-shadow: 0 12px 24px rgba(60,80,120,0.22);">
+            </div>
+            <div style="margin-top: 22px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #5A8EAA;">— 特典 02</div>
+              <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(16px, 1.8vw, 20px); line-height: 1.6; letter-spacing: -0.005em; margin: 10px 0 0;">『事務員さんのAI活用スタートガイド』</h3>
+              <p style="font-size: 13px; line-height: 1.85; color: #5F5E5A; margin: 12px 0 0;">コピペで今日から使える5つだけ<br>使うAIはなんでもOK！　Claude、ChatGPT、Gemini…など！<br></p>
+            </div>
+          </article>
+        </div>
+
+        <!-- CTA -->
+        <div style="text-align: center; margin-top: clamp(32px, 4vw, 48px);">
+          <a href="https://lin.ee/zY0tCOb" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 34px; background: #D87C5E; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-size: 16px; font-weight: 500;">
+            <img src="images/line-icon.png" alt="LINE" style="width: 22px; height: 22px; display: block;">
+            無料で受け取る
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+          <div style="font-size: 12px; color: #5F5E5A; margin-top: 14px;">登録は10秒。いつでも解除できます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== VOICY BANNER ============== -->
+  <section id="voicy" style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(40px, 5vw, 72px);">
+    <div style="position: relative; padding: clamp(28px, 4vw, 48px); border-radius: 40px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06), 0 24px 60px rgba(216,124,94,0.08); overflow: hidden;">
+      <div aria-hidden="true" style="position: absolute; top: -80px; right: -80px; width: 280px; height: 280px; border-radius: 50%; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 100%); filter: blur(60px); opacity: 0.35;"></div>
+      <div style="position: relative; display: flex; flex-wrap: wrap-reverse; gap: clamp(24px, 3vw, 40px); align-items: center; justify-content: space-between;">
+        <div style="flex: 1 1 340px; min-width: 260px;">
+          <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #D87C5E;"></span>
+            VOICY — NEW CHANNEL
+          </div>
+          <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(24px, 3.2vw, 38px); line-height: 1.35; letter-spacing: -0.015em; margin: 14px 0 0;">
+            毎週水曜 — <span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">聴くだけ</span>フリーランス講座
+          </h2>
+          <p style="font-size: 13px; color: #5F5E5A; margin: 14px 0 0; line-height: 1.9; max-width: 32em;">フリーランスの学校 公式Voicyにて毎週水曜配信中。</p>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #5F5E5A; margin-top: 12px;">2026.07.01 (WED) — 配信スタート</div>
+          <a href="https://voicy.jp/channel/2006/7944064" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 26px; background: #2C2C2A; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 500; white-space: nowrap; margin-top: 24px;">
+            チャンネルを開く
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+        <a href="https://voicy.jp/channel/2006/7944064" target="_blank" rel="noopener" style="flex: 0 1 260px; min-width: 200px; display: block; position: relative; aspect-ratio: 1; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(216,124,94,0.20), 0 0 0 1px rgba(44,44,42,0.06); text-decoration: none;">
+          <img src="images/voicy-cover.webp" alt="聴くだけフリーランス講座 — Voicyチャンネルカバー" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== STORY ============== -->
+  <section id="story" style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: end; justify-content: space-between; margin-bottom: clamp(32px, 4vw, 56px);">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #EE9C9C;"></span>
+          STORY — 3 CHAPTERS
+        </div>
+        <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(32px, 5vw, 60px); line-height: 1.25; letter-spacing: -0.02em; margin: 14px 0 0;">
+          失って、学んで、<br><span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">新しい</span>働き方へ
+        </h2>
+      </div>
+      <div style="font-size: 13px; color: #5F5E5A; max-width: 22em;">3章にわたるエッセイで、46歳のクビから今までを綴っています。</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(20px, 2.4vw, 36px);">
+      <!-- Chapter 01 -->
+      <article style="position: relative;">
+        <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #D87C5E;">
+          <span style="display: inline-block; width: 24px; height: 1px; background: #D87C5E;"></span>
+          CHAPTER 01
+        </div>
+        <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.4; letter-spacing: -0.01em; margin: 14px 0 0;">46歳で<br>クビになった日</h3>
+        <p style="font-size: 14px; line-height: 1.95; color: #5F5E5A; margin: 16px 0 0;">
+          安定していたはずの会社員生活が、ある日突然終わる。夫のモラハラ、借金850万、マイホームも失う。崩れていく中で、自分の足で立つことを決めた。
+        </p>
+      </article>
+      <!-- Chapter 02 -->
+      <article style="position: relative;">
+        <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #B86A8C;">
+          <span style="display: inline-block; width: 24px; height: 1px; background: #B86A8C;"></span>
+          CHAPTER 02
+        </div>
+        <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.4; letter-spacing: -0.01em; margin: 14px 0 0;">スキルゼロから<br>学び直す</h3>
+        <p style="font-size: 14px; line-height: 1.95; color: #5F5E5A; margin: 16px 0 0;">
+          PCも触ったことがなかった私が、在宅で稼ぐためのスキルを一つずつ手に入れていく。失敗も寄り道も、すべて自分の地図になった日々。
+        </p>
+      </article>
+      <!-- Chapter 03 -->
+      <article style="position: relative;">
+        <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #5A8EAA;">
+          <span style="display: inline-block; width: 24px; height: 1px; background: #5A8EAA;"></span>
+          CHAPTER 03
+        </div>
+        <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.4; letter-spacing: -0.01em; margin: 14px 0 0;">そして、いま<br>自由に働く</h3>
+        <p style="font-size: 14px; line-height: 1.95; color: #5F5E5A; margin: 16px 0 0;">
+          会社に依存しない、夫にも依存しない。娘たちと自分のリズムで暮らす毎日。アラフィフでも、人生は選び直せる。それを今、自分の言葉で発信している。
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============== PHOTO BAND ============== -->
+  <section style="padding: 0 0 clamp(60px, 8vw, 120px);">
+    <div style="max-width: 1240px; margin: 0 auto 24px; padding: 0 24px;">
+      <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #FFB897;"></span>
+        DAILY — IN MY LIFE
+      </div>
+    </div>
+    <div style="display: flex; gap: 16px; overflow-x: auto; padding: 8px 24px 24px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+        <img src="images/work_person.jpg" alt="在宅デスク・ノートPCで作業中" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; filter: saturate(0.85) contrast(1.02);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,184,151,0.65) 0%, rgba(238,156,156,0.55) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
+        <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">01 — DESK</div>
+      </div>
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #EE9C9C 0%, #C5A2D4 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+        <img src="images/work_room.jpg" alt="朝の作業部屋にさす日ざし" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 50%; filter: saturate(0.85) contrast(1.02);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(238,156,156,0.60) 0%, rgba(197,162,212,0.60) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
+        <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">02 — MORNING</div>
+      </div>
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #C5A2D4 0%, #7DB3D0 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+        <img src="images/work3.jpg" alt="スタンディングでコーディング" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; filter: saturate(0.85) contrast(1.02);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(197,162,212,0.55) 0%, rgba(125,179,208,0.65) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
+        <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">03 — BOOKS</div>
+      </div>
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #7DB3D0 0%, #C5A2D4 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+        <img src="images/work4.jpg" alt="カーテン越しの日ざしと観葉植物" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; filter: saturate(0.85) contrast(1.02);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(125,179,208,0.55) 0%, rgba(197,162,212,0.55) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
+        <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">04 — WALK</div>
+      </div>
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #FFB897 0%, #C5A2D4 50%, #7DB3D0 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+        <img src="images/work5.jpg" alt="キーボードに向かう手元" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; filter: saturate(0.85) contrast(1.02);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,184,151,0.55) 0%, rgba(197,162,212,0.55) 50%, rgba(125,179,208,0.65) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
+        <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">05 — EVENING</div>
+      </div>
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #EE9C9C 0%, #7DB3D0 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+        <img src="images/work6.jpg" alt="マグを持ってひと息つく時間" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; filter: saturate(0.85) contrast(1.02);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(238,156,156,0.60) 0%, rgba(125,179,208,0.55) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
+        <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">06 — TEA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== AUDIENCE — 届けたい人へ ============== -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="margin-bottom: clamp(32px, 4vw, 56px);">
+      <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #C5A2D4;"></span>
+        FOR YOU — 届けたい人へ
+      </div>
+      <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(32px, 5vw, 60px); line-height: 1.25; letter-spacing: -0.02em; margin: 14px 0 0;">
+        人生を、もう一度<br><span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">選びたい</span>あなたへ
+      </h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 24px);">
+      <div style="padding: clamp(28px, 3vw, 40px); border-radius: 32px; background: linear-gradient(160deg, rgba(255,184,151,0.10), rgba(255,184,151,0.02)); position: relative; overflow: hidden;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #D87C5E;">— 01</div>
+        <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.5; letter-spacing: -0.01em; margin: 14px 0 0;">新しい一歩を<br>踏み出したい方</h3>
+        <p style="font-size: 13px; line-height: 1.9; color: #5F5E5A; margin: 14px 0 0;">変化を起こしたいけれど、何から始めればいいか分からない。そんなあなたへ。</p>
+      </div>
+      <div style="padding: clamp(28px, 3vw, 40px); border-radius: 32px; background: linear-gradient(160deg, rgba(197,162,212,0.10), rgba(197,162,212,0.02)); position: relative; overflow: hidden;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #B86A8C;">— 02</div>
+        <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.5; letter-spacing: -0.01em; margin: 14px 0 0;">これからの生き方に<br>迷っている方</h3>
+        <p style="font-size: 13px; line-height: 1.9; color: #5F5E5A; margin: 14px 0 0;">「この先の人生どうしよう」を、選び直せるんだ、と思いたい方へ。</p>
+      </div>
+      <div style="padding: clamp(28px, 3vw, 40px); border-radius: 32px; background: linear-gradient(160deg, rgba(125,179,208,0.10), rgba(125,179,208,0.02)); position: relative; overflow: hidden;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #5A8EAA;">— 03</div>
+        <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.5; letter-spacing: -0.01em; margin: 14px 0 0;">子どもが手離れして<br>何か始めたい方</h3>
+        <p style="font-size: 13px; line-height: 1.9; color: #5F5E5A; margin: 14px 0 0;">空いた時間で、自分のための何かを始めたい。そんな等身大のあなたへ。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ABOUT — やっていること ============== -->
+  <section id="about" style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="margin-bottom: clamp(32px, 4vw, 56px);">
+      <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #7DB3D0;"></span>
+        ABOUT — やっていること
+      </div>
+      <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(32px, 5vw, 60px); line-height: 1.25; letter-spacing: -0.02em; margin: 14px 0 0;">
+        独立して5年、<br>今、<span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">選び直せている</span>
+      </h2>
+    </div>
+
+    <!-- Numbers -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(16px, 2vw, 24px); margin-bottom: clamp(40px, 5vw, 64px);">
+
+      <!-- YEARS -->
+      <div style="padding: clamp(32px, 3.6vw, 44px); border-radius: 32px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); position: relative; overflow: hidden;">
+        <!-- illustration: stacked desk calendar pages (20年=長い積み重ね) -->
+        <div aria-hidden="true" style="position: absolute; top: 22px; right: 22px; width: clamp(64px, 7vw, 84px); height: clamp(64px, 7vw, 84px);">
+          <!-- back pages (depth) -->
+          <div style="position: absolute; top: 10px; left: 4px; width: 70%; height: 78%; border-radius: 8px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(184,106,140,0.25);"></div>
+          <div style="position: absolute; top: 6px; left: 8px; width: 70%; height: 78%; border-radius: 8px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(184,106,140,0.35);"></div>
+          <!-- front page -->
+          <div style="position: absolute; top: 2px; left: 12px; width: 70%; height: 78%; border-radius: 8px; background: #FFFFFF; box-shadow: 0 0 0 1.5px #B86A8C, 0 6px 14px rgba(184,106,140,0.18); overflow: hidden;">
+            <!-- header strip -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 30%; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 100%);"></div>
+            <!-- punch holes -->
+            <div style="position: absolute; top: -3px; left: 22%; width: 5px; height: 5px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #B86A8C;"></div>
+            <div style="position: absolute; top: -3px; right: 22%; width: 5px; height: 5px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #B86A8C;"></div>
+            <!-- number "20" -->
+            <div style="position: absolute; top: 32%; left: 0; right: 0; text-align: center; font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 28px); line-height: 1; color: #B86A8C;">5</div>
+            <!-- YEAR label -->
+            <div style="position: absolute; bottom: 8%; left: 0; right: 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 7px; letter-spacing: 0.18em; color: #B86A8C;">YEAR</div>
+          </div>
+        </div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #5F5E5A;">INDEPENDENT</div>
+        <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(56px, 8vw, 96px); line-height: 1; letter-spacing: -0.04em; margin: 18px 0 0; background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">5<span style="font-family: 'Zen Kaku Gothic New', system-ui, sans-serif; font-size: 0.36em; font-weight: 500; vertical-align: baseline; margin-left: 6px; color: #5F5E5A; -webkit-text-fill-color: #5F5E5A;">年目</span></div>
+        <div style="font-size: 13px; color: #5F5E5A; margin-top: 12px;">在宅ワーカーとしての活動年数</div>
+      </div>
+
+      <!-- COMPANIES -->
+      <div style="padding: clamp(32px, 3.6vw, 44px); border-radius: 32px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); position: relative; overflow: hidden;">
+        <!-- illustration: 3 building shapes + smaller "single-job" dots floating -->
+        <div aria-hidden="true" style="position: absolute; top: 28px; right: 22px; display: flex; align-items: end; gap: 4px; height: clamp(56px, 6vw, 72px);">
+          <!-- building 1 (peach) -->
+          <div style="width: clamp(16px, 1.8vw, 20px); height: 70%; border-radius: 4px 4px 0 0; background: linear-gradient(160deg, #FFB897, #EE9C9C); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 28%; left: 22%; width: 22%; height: 10%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 28%; right: 22%; width: 22%; height: 10%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 52%; left: 22%; width: 22%; height: 10%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 52%; right: 22%; width: 22%; height: 10%; background: rgba(255,255,255,0.6);"></div>
+          </div>
+          <!-- building 2 (pink/purple, tallest) -->
+          <div style="width: clamp(18px, 2vw, 22px); height: 100%; border-radius: 4px 4px 0 0; background: linear-gradient(160deg, #EE9C9C, #B86A8C); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 8%; left: 50%; transform: translateX(-50%); width: 25%; height: 8%; background: rgba(255,255,255,0.7); border-radius: 1px;"></div>
+            <div style="position: absolute; top: 24%; left: 20%; width: 22%; height: 8%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 24%; right: 20%; width: 22%; height: 8%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 42%; left: 20%; width: 22%; height: 8%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 42%; right: 20%; width: 22%; height: 8%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 60%; left: 20%; width: 22%; height: 8%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 60%; right: 20%; width: 22%; height: 8%; background: rgba(255,255,255,0.6);"></div>
+          </div>
+          <!-- building 3 (blue) -->
+          <div style="width: clamp(16px, 1.8vw, 20px); height: 56%; border-radius: 4px 4px 0 0; background: linear-gradient(160deg, #C5A2D4, #7DB3D0); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 24%; left: 22%; width: 22%; height: 12%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 24%; right: 22%; width: 22%; height: 12%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 56%; left: 22%; width: 22%; height: 12%; background: rgba(255,255,255,0.6);"></div>
+            <div style="position: absolute; top: 56%; right: 22%; width: 22%; height: 12%; background: rgba(255,255,255,0.6);"></div>
+          </div>
+          <!-- floating "+α / single jobs" dots -->
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-bottom: 18%; margin-left: 4px;">
+            <div style="width: 6px; height: 6px; border-radius: 50%; background: #5A8EAA;"></div>
+            <div style="width: 5px; height: 5px; border-radius: 50%; background: #B86A8C; opacity: 0.7;"></div>
+            <div style="width: 4px; height: 4px; border-radius: 50%; background: #D87C5E; opacity: 0.5;"></div>
+          </div>
+        </div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #5F5E5A;">COMPANIES</div>
+        <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(56px, 8vw, 96px); line-height: 1; letter-spacing: -0.04em; margin: 18px 0 0; background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">3<span style="font-family: 'Zen Kaku Gothic New', system-ui, sans-serif; font-size: 0.28em; font-weight: 500; vertical-align: top; margin-left: 6px; color: #5F5E5A; -webkit-text-fill-color: #5F5E5A;">+α</span></div>
+        <div style="font-size: 13px; color: #5F5E5A; margin-top: 12px;">メイン3社の業務委託＋単発のお仕事</div>
+      </div>
+
+      <!-- INCOME -->
+      <div style="padding: clamp(32px, 3.6vw, 44px); border-radius: 32px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); position: relative; overflow: hidden;">
+        <!-- illustration: two coin stacks, right one twice as tall (収入2倍) -->
+        <div aria-hidden="true" style="position: absolute; top: 26px; right: 22px; display: flex; align-items: end; gap: 8px; height: clamp(64px, 7vw, 80px);">
+          <!-- BEFORE stack (smaller, muted) -->
+          <div style="display: flex; flex-direction: column-reverse; gap: 2px; align-items: center;">
+            <div style="width: clamp(20px, 2.4vw, 26px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #E8E8E5, #CFCFCC); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);"></div>
+            <div style="width: clamp(20px, 2.4vw, 26px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #ECECE9, #D5D5D2); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);"></div>
+            <div style="width: clamp(20px, 2.4vw, 26px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #EFEFEC, #D8D8D5); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);"></div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #888; margin-top: 6px; letter-spacing: 0.1em;">BEFORE</div>
+          </div>
+          <!-- arrow → -->
+          <div style="padding-bottom: 30px; color: #B86A8C; font-family: 'JetBrains Mono', monospace; font-size: 14px;">→</div>
+          <!-- NOW stack (taller, colored, "twice as tall") -->
+          <div style="display: flex; flex-direction: column-reverse; gap: 2px; align-items: center;">
+            <div style="width: clamp(22px, 2.6vw, 28px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #FFB897, #EE9C9C); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.08);"></div>
+            <div style="width: clamp(22px, 2.6vw, 28px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #EE9C9C, #D87C5E); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.08);"></div>
+            <div style="width: clamp(22px, 2.6vw, 28px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #EE9C9C, #B86A8C); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.08);"></div>
+            <div style="width: clamp(22px, 2.6vw, 28px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #C5A2D4, #B86A8C); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.08);"></div>
+            <div style="width: clamp(22px, 2.6vw, 28px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #C5A2D4, #7DB3D0); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.08);"></div>
+            <div style="width: clamp(22px, 2.6vw, 28px); height: clamp(6px, 0.7vw, 8px); border-radius: 50%; background: linear-gradient(160deg, #7DB3D0, #5A8EAA); box-shadow: inset 0 -1px 0 rgba(0,0,0,0.08);"></div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #D87C5E; margin-top: 6px; letter-spacing: 0.1em;">NOW ×2</div>
+          </div>
+        </div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #5F5E5A;">INCOME</div>
+        <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(56px, 8vw, 96px); line-height: 1; letter-spacing: -0.04em; margin: 18px 0 0; background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">2<span style="font-family: 'Zen Old Mincho', serif; font-size: 0.42em; font-weight: 700; vertical-align: baseline; margin-left: 4px;">倍</span></div>
+        <div style="font-size: 13px; color: #5F5E5A; margin-top: 12px;">独立後、収入は2倍に</div>
+      </div>
+
+    </div>
+
+    <!-- Before / Now -->
+    <div style="padding: clamp(32px, 4vw, 56px); border-radius: 40px; background: linear-gradient(160deg, rgba(255,184,151,0.06), rgba(125,179,208,0.06)); position: relative; overflow: hidden;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(20px, 3vw, 40px); align-items: stretch;">
+        <div style="display: flex; flex-direction: column;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #5F5E5A; min-height: 18px;">BEFORE — これまで</div>
+          <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(18px, 2.2vw, 24px); line-height: 1.5; margin: 16px 0 0; color: #8A8985;">会社員 / モラハラ婚 / 借金850万</h3>
+          <ul style="list-style: none; padding: 0; margin: 18px 0 0; font-size: 13px; color: #8A8985; line-height: 2; flex: 1;">
+            <li>— 夫と会社に依存する生活</li>
+            <li>— 通勤・残業・周囲に合わせる毎日</li>
+            <li>— 自分の人生を選べない感覚</li>
+          </ul>
+        </div>
+        <div style="position: relative; display: flex; flex-direction: column;">
+          <div aria-hidden="true" style="position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(160deg, #FFB897, #C5A2D4); filter: blur(40px); opacity: 0.5;"></div>
+          <div style="position: relative; display: flex; flex-direction: column; flex: 1;">
+            <div style="display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #D87C5E; min-height: 18px;">
+              NOW — いま
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #D87C5E;"></span>
+            </div>
+            <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.35; margin: 16px 0 0; letter-spacing: -0.01em;">独立 / 在宅 / <span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">自由</span>な毎日</h3>
+            <ul style="list-style: none; padding: 0; margin: 18px 0 0; font-size: 15px; color: #2C2C2A; line-height: 2; flex: 1;">
+              <li>— 会社にも夫にも依存しない</li>
+              <li>— 娘たちと自分のリズムで暮らす</li>
+              <li>— 発信を通じて同じ立場の人を支える</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== みんなの声 (実物集まるまで非表示にできる) ============== -->
+  <!-- To hide: change data-visible="true" to "false" OR delete the entire <section id="voices">. -->
+  <section id="voices" data-visible="true" style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="margin-bottom: clamp(32px, 4vw, 56px);">
+      <div style="display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #B86A8C;"></span>
+        VOICES — みんなの声
+      </div>
+      <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(32px, 5vw, 60px); line-height: 1.25; letter-spacing: -0.02em; margin: 14px 0 0;">
+        受け取った方から、<br><span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">届いた言葉</span>
+      </h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 24px);">
+      <!-- Voice 01 -->
+      <blockquote style="margin: 0; padding: clamp(28px, 3vw, 36px); border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); position: relative;">
+        <div aria-hidden="true" style="font-family: 'Zen Old Mincho', serif; font-size: 60px; line-height: 0.8; color: #FFB897; position: absolute; top: 20px; left: 24px; opacity: 0.5;">"</div>
+        <div style="font-family: 'Zen Old Mincho', serif; font-size: clamp(15px, 1.4vw, 17px); line-height: 1.9; color: #2C2C2A; margin-top: 20px;">
+          （ここにDMやコメントの引用が入ります）まだ集まっていないため、プレースホルダーです。3件掲載できるよう枠だけ準備しています。
+        </div>
+        <footer style="display: flex; align-items: center; gap: 10px; margin-top: 22px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(160deg, #FFB897, #EE9C9C);"></div>
+          <div>
+            <div style="font-size: 12px; font-weight: 500; color: #2C2C2A;">50代・在宅ワーク検討中</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5F5E5A;">VIA LINE</div>
+          </div>
+        </footer>
+      </blockquote>
+      <!-- Voice 02 -->
+      <blockquote style="margin: 0; padding: clamp(28px, 3vw, 36px); border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); position: relative;">
+        <div aria-hidden="true" style="font-family: 'Zen Old Mincho', serif; font-size: 60px; line-height: 0.8; color: #C5A2D4; position: absolute; top: 20px; left: 24px; opacity: 0.5;">"</div>
+        <div style="font-family: 'Zen Old Mincho', serif; font-size: clamp(15px, 1.4vw, 17px); line-height: 1.9; color: #2C2C2A; margin-top: 20px;">
+          （ここにDMやコメントの引用が入ります）実物のお声が届くまでは、この枠は非表示にもできます。
+        </div>
+        <footer style="display: flex; align-items: center; gap: 10px; margin-top: 22px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(160deg, #EE9C9C, #C5A2D4);"></div>
+          <div>
+            <div style="font-size: 12px; font-weight: 500; color: #2C2C2A;">40代・子育て中</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5F5E5A;">VIA INSTAGRAM DM</div>
+          </div>
+        </footer>
+      </blockquote>
+      <!-- Voice 03 -->
+      <blockquote style="margin: 0; padding: clamp(28px, 3vw, 36px); border-radius: 28px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); position: relative;">
+        <div aria-hidden="true" style="font-family: 'Zen Old Mincho', serif; font-size: 60px; line-height: 0.8; color: #7DB3D0; position: absolute; top: 20px; left: 24px; opacity: 0.5;">"</div>
+        <div style="font-family: 'Zen Old Mincho', serif; font-size: clamp(15px, 1.4vw, 17px); line-height: 1.9; color: #2C2C2A; margin-top: 20px;">
+          （ここにDMやコメントの引用が入ります）3枚並ぶことで、実際に届いていることが伝わる想定です。
+        </div>
+        <footer style="display: flex; align-items: center; gap: 10px; margin-top: 22px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(160deg, #C5A2D4, #7DB3D0);"></div>
+          <div>
+            <div style="font-size: 12px; font-weight: 500; color: #2C2C2A;">40代後半・独立検討中</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5F5E5A;">VIA LINE</div>
+          </div>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============== INSTAGRAM REELS PREVIEW ============== -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: end; justify-content: space-between; margin-bottom: clamp(28px, 3.5vw, 44px);">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #C5A2D4;"></span>
+          INSTAGRAM — LATEST REELS
+        </div>
+        <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(28px, 4.4vw, 52px); line-height: 1.28; letter-spacing: -0.02em; margin: 14px 0 0;">
+          週3回のリールで、<br>暮らしと働き方の<span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">今</span>を
+        </h2>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: #5F5E5A; text-transform: uppercase;">@RURU.WORK50</div>
+    </div>
+
+    <!-- 3 reel preview cards -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(14px, 1.6vw, 22px); max-width: 920px; margin: 0 auto;">
+      <!-- Reel 01 -->
+      <a href="https://www.instagram.com/ruru.work50/" target="_blank" rel="noopener" style="position: relative; display: block; aspect-ratio: 9/16; border-radius: 28px; overflow: hidden; text-decoration: none; color: inherit; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 55%, #C5A2D4 100%); box-shadow: 0 20px 60px rgba(238,156,156,0.18);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.25), transparent 60%);"></div>
+        <!-- top: play badge -->
+        <div style="position: absolute; top: 14px; left: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px 6px 8px; background: rgba(0,0,0,0.32); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 999px; color: #FFFFFF;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">REEL</span>
+        </div>
+        <!-- top right: number -->
+        <div style="position: absolute; top: 14px; right: 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.85);">01</div>
+        <!-- bottom: caption -->
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 22px 18px 18px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); color: #FFFFFF;">
+          <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: 14px; line-height: 1.5;">在宅ワークの<br>朝ルーティン</div>
+          <div style="font-size: 11px; opacity: 0.85; margin-top: 8px; letter-spacing: 0.02em;">#フリーランス #アラフィフ</div>
+        </div>
+      </a>
+      <!-- Reel 02 -->
+      <a href="https://www.instagram.com/ruru.work50/" target="_blank" rel="noopener" style="position: relative; display: block; aspect-ratio: 9/16; border-radius: 28px; overflow: hidden; text-decoration: none; color: inherit; background: linear-gradient(160deg, #EE9C9C 0%, #C5A2D4 55%, #7DB3D0 100%); box-shadow: 0 20px 60px rgba(197,162,212,0.18);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.22), transparent 60%);"></div>
+        <div style="position: absolute; top: 14px; left: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px 6px 8px; background: rgba(0,0,0,0.32); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 999px; color: #FFFFFF;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">REEL</span>
+        </div>
+        <div style="position: absolute; top: 14px; right: 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.85);">02</div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 22px 18px 18px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); color: #FFFFFF;">
+          <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: 14px; line-height: 1.5;">46歳でクビ。<br>そこから今まで</div>
+          <div style="font-size: 11px; opacity: 0.85; margin-top: 8px; letter-spacing: 0.02em;">#人生立て直し #50代</div>
+        </div>
+      </a>
+      <!-- Reel 03 -->
+      <a href="https://www.instagram.com/ruru.work50/" target="_blank" rel="noopener" style="position: relative; display: block; aspect-ratio: 9/16; border-radius: 28px; overflow: hidden; text-decoration: none; color: inherit; background: linear-gradient(160deg, #C5A2D4 0%, #7DB3D0 60%, #5A8EAA 100%); box-shadow: 0 20px 60px rgba(125,179,208,0.22);">
+        <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(circle at 60% 60%, rgba(255,255,255,0.22), transparent 60%);"></div>
+        <div style="position: absolute; top: 14px; left: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px 6px 8px; background: rgba(0,0,0,0.32); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 999px; color: #FFFFFF;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">REEL</span>
+        </div>
+        <div style="position: absolute; top: 14px; right: 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(255,255,255,0.85);">03</div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 22px 18px 18px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent); color: #FFFFFF;">
+          <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: 14px; line-height: 1.5;">スキルゼロから<br>はじめた一歩</div>
+          <div style="font-size: 11px; opacity: 0.85; margin-top: 8px; letter-spacing: 0.02em;">#在宅ワーク #学び直し</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- "Instagramで全て見る" link -->
+    <div style="text-align: center; margin-top: clamp(28px, 3.5vw, 40px);">
+      <a href="https://www.instagram.com/ruru.work50/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; color: #D87C5E; font-size: 14px; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(216,124,94,0.4); padding-bottom: 4px;">
+        Instagramで全て見る
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============== NOTE — メイン記事誘導 ============== -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="position: relative; padding: clamp(36px, 5vw, 72px); border-radius: 48px; background: #2C2C2A; color: #FFFFFF; overflow: hidden;">
+      <div aria-hidden="true" style="position: absolute; top: -120px; right: -120px; width: 460px; height: 460px; border-radius: 50%; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 30%, #C5A2D4 65%, #7DB3D0 100%); filter: blur(80px); opacity: 0.55;"></div>
+      <div aria-hidden="true" style="position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(160deg, #C5A2D4 0%, #7DB3D0 100%); filter: blur(70px); opacity: 0.35;"></div>
+
+      <div style="position: relative; display: flex; flex-wrap: wrap-reverse; gap: clamp(28px, 4vw, 60px); align-items: center; justify-content: space-between;">
+        <div style="flex: 1 1 340px; min-width: 260px;">
+          <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: rgba(255,255,255,0.7); text-transform: uppercase;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #FFB897;"></span>
+            MAIN ARTICLE — メインnote
+          </div>
+          <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(28px, 4vw, 48px); line-height: 1.3; letter-spacing: -0.02em; margin: 18px 0 0; color: #FFFFFF;">
+            スキルゼロからの<br><span style="background: linear-gradient(120deg, #FFB897, #EE9C9C, #C5A2D4, #7DB3D0); -webkit-background-clip: text; background-clip: text; color: transparent;">フリーランス転身記</span>
+          </h2>
+          <p style="font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.78); margin: 22px 0 0; max-width: 32em;">
+            ストーリーで触れられなかった、具体的な工夫・お金の話・心の動きまで。アラフィフでも人生を選べる収入の作り方を、実体験で。
+          </p>
+          <a href="https://note.com/ruru_work50/n/n3ef7b58add5b" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 30px; background: #D87C5E; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; white-space: nowrap; margin-top: 28px;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; padding: 4px 6px; background: #FFFFFF; border-radius: 6px;"><img src="images/note-logo.png" alt="note" style="height: 12px; width: auto; display: block;"></span>
+            noteを読む
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+        <a href="https://note.com/ruru_work50/n/n3ef7b58add5b" target="_blank" rel="noopener" style="flex: 0 1 460px; min-width: 260px; display: block; position: relative; aspect-ratio: 1280/670; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(255,184,151,0.28), 0 0 0 1px rgba(255,255,255,0.08); text-decoration: none;">
+          <img src="images/note-cover.webp" alt="46歳でフリーランスに挑戦！ 3年間でやった10のこと — noteカバー" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== 無料特典 再掲 (簡易CTA) ============== -->
+  <section id="gift-encore" style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="position: relative; padding: clamp(28px, 4vw, 48px); border-radius: 40px; background: linear-gradient(160deg, rgba(255,184,151,0.14) 0%, rgba(238,156,156,0.10) 40%, rgba(197,162,212,0.10) 100%); overflow: hidden;">
+      <div aria-hidden="true" style="position: absolute; top: -80px; right: -60px; width: 260px; height: 260px; border-radius: 50%; background: linear-gradient(160deg, #FFB897, #EE9C9C); filter: blur(70px); opacity: 0.28;"></div>
+      <div style="position: relative; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; justify-content: space-between;">
+        <div style="flex: 1 1 360px; min-width: 260px;">
+          <div style="display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #D87C5E;"></span>
+            FREE GIFT — 公式LINE
+          </div>
+          <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(22px, 3vw, 34px); line-height: 1.4; letter-spacing: -0.015em; margin: 14px 0 0;">
+            2つの<span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">無料プレゼント</span>、まだお受け取りでなければ
+          </h2>
+          <p style="font-size: 13px; color: #5F5E5A; margin: 12px 0 0; line-height: 1.9;">登録は10秒。いつでも解除できます。</p>
+        </div>
+        <a href="https://lin.ee/zY0tCOb" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 30px; background: #D87C5E; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; white-space: nowrap;">
+          <img src="images/line-icon.png" alt="LINE" style="width: 22px; height: 22px; display: block;">
+          無料で受け取る
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CONNECT — つながる ============== -->
+  <section id="connect" style="max-width: 1240px; margin: 0 auto; padding: 0 24px clamp(60px, 8vw, 120px);">
+    <div style="margin-bottom: clamp(32px, 4vw, 56px);">
+      <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: #5F5E5A; text-transform: uppercase;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #D87C5E;"></span>
+        CONNECT — つながる
+      </div>
+      <h2 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(32px, 5vw, 60px); line-height: 1.25; letter-spacing: -0.02em; margin: 14px 0 0;">
+        いちばん近くで、<br><span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">声を届けます</span>
+      </h2>
+    </div>
+
+    <!-- Featured 3 -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(16px, 2vw, 24px); margin-bottom: clamp(32px, 4vw, 56px);">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/ruru.work50/" target="_blank" rel="noopener" style="display: block; padding: clamp(28px, 3vw, 36px); border-radius: 32px; background: linear-gradient(160deg, rgba(197,162,212,0.16), rgba(255,184,151,0.10)); text-decoration: none; color: inherit; position: relative; overflow: hidden;">
+        <div style="display: flex; justify-content: space-between; align-items: start; gap: 14px;">
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #B86A8C;">REELS — 週3回</div>
+            <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.3; margin: 14px 0 0;">Instagram</h3>
+            <p style="font-size: 13px; line-height: 1.85; color: #5F5E5A; margin: 12px 0 0;">暮らしと働き方の今を、リールで。</p>
+          </div>
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #FEDA75 0%, #FA7E1E 25%, #D62976 50%, #962FBF 75%, #4F5BD5 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(214,41,118,0.25);">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 13px; color: #D87C5E; font-weight: 500;">
+          フォローする
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </div>
+      </a>
+
+      <!-- Voicy -->
+      <a href="https://voicy.jp/channel/2006/7944064" target="_blank" rel="noopener" style="display: block; padding: clamp(28px, 3vw, 36px); border-radius: 32px; background: linear-gradient(160deg, rgba(255,184,151,0.20), rgba(238,156,156,0.10)); text-decoration: none; color: inherit; position: relative; overflow: hidden;">
+        <div style="display: flex; justify-content: space-between; align-items: start; gap: 14px;">
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #D87C5E;">WEEKLY — 毎週水曜</div>
+            <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.3; margin: 14px 0 0;">Voicy</h3>
+            <p style="font-size: 13px; line-height: 1.85; color: #5F5E5A; margin: 12px 0 0;">2026.07 スタート・聴くだけフリーランス講座。</p>
+          </div>
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(255,125,50,0.20), 0 0 0 1px rgba(44,44,42,0.06);">
+            <svg viewBox="0 0 30 29" width="24" height="24" fill="#FF7D32"><path d="M27.063.035c-3.208 1.068-9.183 5.064-12.441 15.021C11.364 5.099 5.389 1.103 2.181.035a.669.669 0 0 0-.821.349c-.878 1.878-3.358 8.782 1.873 18.51 3.214 5.979 9.114 8.7 10.878 9.408a1.378 1.378 0 0 0 1.022 0c1.765-.7 7.664-3.429 10.879-9.408 5.231-9.728 2.75-16.632 1.873-18.51a.671.671 0 0 0-.822-.349Zm-14.143 23.906a17.632 17.632 0 0 1-6.7-6.652 20.53 20.53 0 0 1-2.772-11.47c.039-.452.1-.871.164-1.257a15.569 15.569 0 0 1 1.986 1.652 24.033 24.033 0 0 1 5.808 9.9l0 .01 0 .011a23.01 23.01 0 0 1 1.514 7.806Zm10.107-6.652a17.625 17.625 0 0 1-6.7 6.652 23.037 23.037 0 0 1 1.51-7.806l0-.011 0-.01a24.034 24.034 0 0 1 5.809-9.9 15.567 15.567 0 0 1 1.985-1.652c.068.386.125.805.164 1.257a20.522 20.522 0 0 1-2.768 11.47Z"></path></svg>
+          </div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 13px; color: #D87C5E; font-weight: 500;">
+          聴く
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </div>
+      </a>
+
+      <!-- note (Featured — main product hub) -->
+      <a href="https://note.com/ruru_work50" target="_blank" rel="noopener" style="display: block; padding: clamp(28px, 3vw, 36px); border-radius: 32px; background: linear-gradient(160deg, rgba(125,179,208,0.16), rgba(197,162,212,0.10)); text-decoration: none; color: inherit; position: relative; overflow: hidden;">
+        <div style="display: flex; justify-content: space-between; align-items: start; gap: 14px;">
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #5A8EAA;">ESSAY — メイン記事</div>
+            <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.3; margin: 14px 0 0;">note</h3>
+            <p style="font-size: 13px; line-height: 1.85; color: #5F5E5A; margin: 12px 0 0;">3年で前職の2倍になるまでにやった10のこと。</p>
+          </div>
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(44,44,42,0.08), 0 0 0 1px rgba(44,44,42,0.06);">
+            <img src="images/note-logo.png" alt="note" style="width: 30px; height: auto; display: block;">
+          </div>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 13px; color: #D87C5E; font-weight: 500;">
+          読む
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </div>
+      </a>
+    </div>
+
+    <!-- Secondary 3 -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: clamp(12px, 1.6vw, 18px);">
+      <a href="https://substack.com/@ruruwork50" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); text-decoration: none; color: inherit;">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #FF6719; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#FFFFFF"><path d="M22.539 8.242H1.46V5.406h21.08zM1.46 10.812V24l10.54-5.86L22.54 24V10.812zM22.539.594H1.46V3.43h21.08z"></path></svg>
+        </div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #5F5E5A;">DAILY — NEWSLETTER</div>
+          <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: 16px; margin-top: 6px;">Substack</div>
+        </div>
+      </a>
+<a href="https://x.com/ruru933" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); text-decoration: none; color: inherit;">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #000000; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#FFFFFF"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+        </div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #5F5E5A;">DAILY — SHORT</div>
+          <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: 16px; margin-top: 6px;">X</div>
+        </div>
+      </a>
+      <a href="https://www.threads.com/@ruru.work50" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(44,44,42,0.06); text-decoration: none; color: inherit;">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #000000; display: flex; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 192 192" width="22" height="22" fill="#FFFFFF"><path d="M141.537 88.9883c-.6031-.2879-1.2154-.5646-1.8371-.8283-1.0824-19.9354-11.9748-31.3573-30.2652-31.4739q-.1245-.0018-.2482-.0018c-10.9448 0-20.0492 4.6752-25.6494 13.1873l10.0644 6.9022c4.1832-6.3465 10.7502-7.6981 15.5905-7.6981q.084 0 .1683.0018c6.0295.0384 10.5824 1.7908 13.5326 5.2094 2.1489 2.4909 3.5854 5.9327 4.2985 10.2733-5.3762-.9145-11.1917-1.1955-17.4064-.836-17.5089 1.0104-28.7674 11.2222-28.011 25.4066.3844 7.1963 3.9663 13.3934 10.0863 17.4498 5.1723 3.4272 11.834 5.1225 18.7565 4.7443 9.1385-.5006 16.3086-3.9857 21.3157-10.36 3.8064-4.8422 6.211-11.115 7.2717-19.024 4.3563 2.6273 7.5844 6.0854 9.3676 10.242 3.0335 7.0741 3.2117 18.7051-6.2795 28.1932-8.3164 8.3116-18.3145 11.9068-33.4325 12.0175-16.7699-.1233-29.4526-5.4995-37.7018-15.9791-7.7223-9.8109-11.7129-23.9829-11.8611-42.1074.1483-18.1245 4.1388-32.2965 11.8611-42.1073 8.2492-10.4796 20.9314-15.8562 37.7016-15.9793 16.8834.1234 29.7756 5.5218 38.3129 16.0459 4.1878 5.16 7.3444 11.6512 9.4237 19.2145l12.1495-3.2415c-2.5197-9.3049-6.4859-17.3213-11.879-23.9718-10.9494-13.4966-26.9613-20.4114-47.5872-20.5547h-.0852c-20.5843.1428-36.4171 7.0839-47.0623 20.6296-9.4728 12.0552-14.3568 28.8324-14.5205 49.8663l-.0006.0885.0006.0886c.1637 21.0339 5.0477 37.8111 14.5205 49.8663 10.6452 13.5457 26.478 20.4869 47.0623 20.6296h.0852c18.3072-.1273 31.2088-4.9203 41.8318-15.5388 13.8956-13.8886 13.4767-31.297 8.8974-41.9781-3.2842-7.6592-9.5473-13.8797-18.115-17.9884Zm-31.4222 34.0338c-7.6592.4315-15.6157-3.0069-16.0084-10.3675-.2911-5.4595 3.8848-11.5519 16.4778-12.2782 1.4421-.0832 2.8571-.1239 4.2469-.1239 4.5734 0 8.8517.4438 12.7411 1.294-1.4507 18.1276-9.9612 21.0057-17.4574 21.4756Z"></path></svg>
+        </div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #5F5E5A;">DAILY — SHORT</div>
+          <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: 16px; margin-top: 6px;">Threads</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer style="border-top: 1px solid rgba(44,44,42,0.08); padding: clamp(48px, 6vw, 80px) 24px clamp(32px, 4vw, 48px);">
+    <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: end;">
+      <div>
+        <div style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.02em; line-height: 1.2;">
+          るる<span style="background: linear-gradient(120deg, #D87C5E, #B86A8C, #5A8EAA); -webkit-background-clip: text; background-clip: text; color: transparent;">.</span>
+        </div>
+        <div style="font-size: 13px; color: #5F5E5A; margin-top: 12px; max-width: 28em;">夫にも会社にも依存しない働き方を、アラフィフから。</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 13px; color: #5F5E5A;">
+        <a href="#story" style="color: inherit; text-decoration: none;">Story</a>
+        <a href="#voicy" style="color: inherit; text-decoration: none;">Voicy</a>
+        <a href="#about" style="color: inherit; text-decoration: none;">About</a>
+        <a href="#connect" style="color: inherit; text-decoration: none;">Connect</a>
+      </div>
+    </div>
+    <div style="max-width: 1240px; margin: clamp(40px, 5vw, 64px) auto 0; padding-top: 24px; border-top: 1px solid rgba(44,44,42,0.06); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5F5E5A; text-transform: uppercase;">
+      <div>© 2026 RURU</div>
+      <div>RURUWORK2026.PAGES.DEV</div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+</body>
+</html>
