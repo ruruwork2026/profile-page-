@@ -42,6 +42,47 @@
   }
   @keyframes orbitFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  /* Reels — mobile carousel */
+  @media (max-width: 720px) {
+    [data-r="reels-grid"] {
+      display: block !important;
+      overflow: hidden;
+      max-width: 100% !important;
+      margin: 0 -24px !important;
+      padding: 4px 0 !important;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+    }
+    [data-r="reels-track"] {
+      display: flex !important;
+      gap: 14px;
+      width: max-content;
+      animation: marquee 42s linear infinite;
+    }
+    [data-r="reels-track"] > a {
+      flex: 0 0 auto !important;
+      width: auto !important;
+      height: 66vh !important;
+      aspect-ratio: 9 / 16;
+    }
+    [data-r="reels-grid"]:hover [data-r="reels-track"] { animation-play-state: paused; }
+  }
+
+  /* Photo band — auto-scrolling marquee */
+  @keyframes photo-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  [data-r="photo-band"] {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0 24px;
+    width: max-content;
+    animation: photo-marquee 60s linear infinite;
+  }
+  [data-r="photo-band-mask"] {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  }
+  [data-r="photo-band-mask"]:hover [data-r="photo-band"] { animation-play-state: paused; }
   @media (max-width: 720px) {
     [data-r="nav-items"] { display: none !important; }
     [data-r="nav-cta-label"] { display: none !important; }
@@ -51,7 +92,7 @@
     [data-r="header-pad"] { padding-top: 96px !important; }
   }
 </style>
-<script src="./hydrate-reels.js" defer></script>
+<script src="./hydrate-reels.js" defer=""></script>
 </helmet>
 
 <!-- ======================================================== -->
@@ -166,7 +207,7 @@
             </div>
             <div style="margin-top: 22px;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #D87C5E;">— 特典 01</div>
-              <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(16px, 1.8vw, 20px); line-height: 1.6; letter-spacing: -0.005em; margin: 10px 0 0;">『46歳で失業した私が、3年で前職の2倍になるまでにやった10のこと』</h3>
+              <h3 style="font-family: 'Zen Old Mincho', serif; font-weight: 700; font-size: clamp(16px, 1.8vw, 20px); line-height: 1.6; letter-spacing: -0.005em; margin: 10px 0 0;">『（ダイジェスト版）46歳で失業した私が、3年で前職の2倍になるまでにやった10のこと』</h3>
               <p style="font-size: 13px; line-height: 1.85; color: #5F5E5A; margin: 12px 0 0;">ダイジェスト版</p>
             </div>
           </article>
@@ -281,42 +322,44 @@
         DAILY — IN MY LIFE
       </div>
     </div>
-    <div style="display: flex; gap: 16px; overflow-x: auto; padding: 8px 24px 24px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
-      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+    <div data-r="photo-band-mask">
+      <div data-r="photo-band">
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 100%); position: relative; overflow: hidden;">
         <img src="images/work_person.jpg" alt="在宅デスク・ノートPCで作業中" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; filter: saturate(0.85) contrast(1.02);">
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,184,151,0.65) 0%, rgba(238,156,156,0.55) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
         <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">01 — DESK</div>
       </div>
-      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #EE9C9C 0%, #C5A2D4 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #EE9C9C 0%, #C5A2D4 100%); position: relative; overflow: hidden;">
         <img src="images/work_room.jpg" alt="朝の作業部屋にさす日ざし" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 50%; filter: saturate(0.85) contrast(1.02);">
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(238,156,156,0.60) 0%, rgba(197,162,212,0.60) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
         <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">02 — MORNING</div>
       </div>
-      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #C5A2D4 0%, #7DB3D0 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #C5A2D4 0%, #7DB3D0 100%); position: relative; overflow: hidden;">
         <img src="images/work3.jpg" alt="スタンディングでコーディング" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; filter: saturate(0.85) contrast(1.02);">
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(197,162,212,0.55) 0%, rgba(125,179,208,0.65) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
         <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">03 — BOOKS</div>
       </div>
-      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #7DB3D0 0%, #C5A2D4 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #7DB3D0 0%, #C5A2D4 100%); position: relative; overflow: hidden;">
         <img src="images/work4.jpg" alt="カーテン越しの日ざしと観葉植物" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; filter: saturate(0.85) contrast(1.02);">
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(125,179,208,0.55) 0%, rgba(197,162,212,0.55) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
         <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">04 — DAY</div>
       </div>
-      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #FFB897 0%, #C5A2D4 50%, #7DB3D0 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #FFB897 0%, #C5A2D4 50%, #7DB3D0 100%); position: relative; overflow: hidden;">
         <img src="images/work5.jpg" alt="キーボードに向かう手元" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; filter: saturate(0.85) contrast(1.02);">
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,184,151,0.55) 0%, rgba(197,162,212,0.55) 50%, rgba(125,179,208,0.65) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
         <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">05 — EVENING</div>
       </div>
-      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #EE9C9C 0%, #7DB3D0 100%); scroll-snap-align: start; position: relative; overflow: hidden;">
+      <div style="flex: 0 0 auto; width: clamp(180px, 22vw, 260px); aspect-ratio: 4/5; border-radius: 28px; background: linear-gradient(160deg, #EE9C9C 0%, #7DB3D0 100%); position: relative; overflow: hidden;">
         <img src="images/work6.jpg" alt="マグを持ってひと息つく時間" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; filter: saturate(0.85) contrast(1.02);">
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(238,156,156,0.60) 0%, rgba(125,179,208,0.55) 100%); mix-blend-mode: overlay; pointer-events: none;"></div>
         <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.30));"></div>
         <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.92); text-shadow: 0 1px 2px rgba(0,0,0,0.3);">06 — TEA</div>
+      </div>
       </div>
     </div>
   </section>
@@ -565,7 +608,8 @@
     </div>
 
     <!-- 3 reel preview cards (auto-hydrated from Behold.so on load) -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(14px, 1.6vw, 22px); max-width: 920px; margin: 0 auto;">
+    <div data-r="reels-grid" style="max-width: 920px; margin: 0 auto;">
+      <div data-r="reels-track" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(14px, 1.6vw, 22px);">
       <!-- Reel 01 — hydrated from Behold.so JSON feed -->
       <a href="https://www.instagram.com/ruru.work50/" target="_blank" rel="noopener" data-reel-slot="0" style="position: relative; display: block; aspect-ratio: 9/16; border-radius: 28px; overflow: hidden; text-decoration: none; color: inherit; background: linear-gradient(160deg, #FFB897 0%, #EE9C9C 55%, #C5A2D4 100%); box-shadow: 0 20px 60px rgba(238,156,156,0.20);">
         <img data-reel-thumb="" alt="" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease;">
@@ -608,6 +652,7 @@
           <div data-reel-tags="" style="font-size: 11px; opacity: 0.85; margin-top: 8px; letter-spacing: 0.02em;">#在宅ワーク #学び直し</div>
         </div>
       </a>
+      </div>
     </div>
 
     <!-- "Instagramで全て見る" link -->

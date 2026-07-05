@@ -30,6 +30,12 @@
             if (tags.length) tagsEl.textContent = tags.join(' ');
           }
         });
+        // Mobile carousel: clone the 3 cards so marquee loops seamlessly
+        var track = document.querySelector('[data-r="reels-track"]');
+        if (track && window.matchMedia('(max-width: 720px)').matches && !track.dataset.cloned) {
+          Array.from(track.children).forEach(function(node){ track.appendChild(node.cloneNode(true)); });
+          track.dataset.cloned = '1';
+        }
       })
       .catch(function(){ /* keep static fallback */ });
   }
@@ -37,5 +43,25 @@
     document.addEventListener('DOMContentLoaded', hydrate);
   } else {
     hydrate();
+  }
+})();
+
+
+// Photo band: duplicate 6 cards once for seamless auto-scroll marquee
+(function(){
+  function initBand(){
+    var band = document.querySelector('[data-r="photo-band"]');
+    if (!band || band.dataset.cloned) return;
+    Array.from(band.children).forEach(function(node){
+      var clone = node.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      band.appendChild(clone);
+    });
+    band.dataset.cloned = '1';
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBand);
+  } else {
+    initBand();
   }
 })();
